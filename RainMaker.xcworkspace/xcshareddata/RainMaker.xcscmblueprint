@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "3122749439896935C14336668C345FFEA0AA54DC",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "434827A9132B98C7CF495A641523DA7DC87A6D60" : 9223372036854775807,
+    "3122749439896935C14336668C345FFEA0AA54DC" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "64BB03FA-12C7-4DE0-B00B-CC26DD35E28A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "434827A9132B98C7CF495A641523DA7DC87A6D60" : "",
+    "3122749439896935C14336668C345FFEA0AA54DC" : "RainMaker\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "RainMaker",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "RainMaker.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/TifredThebest\/RainMaker.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3122749439896935C14336668C345FFEA0AA54DC"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git:\/\/github.com\/TifredThebest\/RainMaker",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "434827A9132B98C7CF495A641523DA7DC87A6D60"
+    }
+  ]
+}
