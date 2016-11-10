@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0819312B03C725C9B504EE33 /* Pods_RainMaker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77FD1B2542E9BACBCB95325A /* Pods_RainMaker.framework */; };
+		A6D146D41DD50E4500B8813C /* ViewControllerMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D146D31DD50E4500B8813C /* ViewControllerMain.swift */; };
 		A6F7C7761DCD60B600EE602A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F7C7751DCD60B600EE602A /* AppDelegate.swift */; };
 		A6F7C7781DCD60B600EE602A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F7C7771DCD60B600EE602A /* ViewController.swift */; };
 		A6F7C77B1DCD60B600EE602A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6F7C7791DCD60B600EE602A /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* Begin PBXFileReference section */
 		77FD1B2542E9BACBCB95325A /* Pods_RainMaker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RainMaker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6AD82C81DCE4961003AFEFC /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "../Bridging-Header.h"; sourceTree = "<group>"; };
+		A6D146D31DD50E4500B8813C /* ViewControllerMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerMain.swift; sourceTree = "<group>"; };
 		A6F7C7721DCD60B600EE602A /* RainMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RainMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6F7C7751DCD60B600EE602A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6F7C7771DCD60B600EE602A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				A6AD82C81DCE4961003AFEFC /* Bridging-Header.h */,
 				A6F7C7751DCD60B600EE602A /* AppDelegate.swift */,
 				A6F7C7771DCD60B600EE602A /* ViewController.swift */,
+				A6D146D31DD50E4500B8813C /* ViewControllerMain.swift */,
 				A6F7C7791DCD60B600EE602A /* Main.storyboard */,
 				A6F7C77C1DCD60B600EE602A /* Assets.xcassets */,
 				A6F7C77E1DCD60B600EE602A /* LaunchScreen.storyboard */,
@@ -214,6 +217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6D146D41DD50E4500B8813C /* ViewControllerMain.swift in Sources */,
 				A6F7C7781DCD60B600EE602A /* ViewController.swift in Sources */,
 				A6F7C7761DCD60B600EE602A /* AppDelegate.swift in Sources */,
 			);
@@ -281,7 +285,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -327,7 +331,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "RainMaker/Bridging-Header.h";

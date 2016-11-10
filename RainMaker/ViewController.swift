@@ -8,15 +8,21 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
+
+var accessToken = ""
+var userNameInfo = ""
+var passwordInfo = ""
 
 class ViewController: UIViewController {
 
     @IBOutlet weak var userName: UITextField!
     @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var signInButton: UIButton!
     
-    var userNameInfo = ""
-    var passwordInfo = ""
-    var accessToken = ""
+    
+   
+    
     
     
     override func viewDidLoad() {
@@ -29,6 +35,10 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    
+    
+    
+    
     @IBAction func SignIn(_ sender: Any) {
          userNameInfo = userName.text!
          passwordInfo = password.text!
@@ -55,12 +65,23 @@ class ViewController: UIViewController {
             "client_id":123,
             "client_secret":123,
             "username":userNameInfo,
-            "password":passwordInfo
+            "password":passwordInfo,
+
             
         ]
         
-        Alamofire.request("https://api.particle.io/oauth/token", method: .post, parameters: parameters, headers: header).authenticate(user: "particle", password: "particle").responseJSON { response in
-            print(response)
+        Alamofire.request("https://api.particle.io/v1/devices", method: .post, parameters: parameters, headers: header).authenticate(user: "particle", password: "particle").responseJSON { response in
+            switch response.result {
+                
+            case .success(let value):
+                let json = JSON(value)
+                print(json)
+                accessToken = json["access_token"].stringValue
+                //self.performSegue(withIdentifier: "SignInComplete", sender: self)
+                
+            case .failure(let error):
+                print(error)
+            }
             
            
         }
