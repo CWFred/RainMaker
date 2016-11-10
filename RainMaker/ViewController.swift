@@ -70,14 +70,15 @@ class ViewController: UIViewController {
             
         ]
         
-        Alamofire.request("https://api.particle.io/v1/devices", method: .post, parameters: parameters, headers: header).authenticate(user: "particle", password: "particle").responseJSON { response in
+        Alamofire.request("https://api.particle.io/oauth/token", method: .post, parameters: parameters, headers: header).authenticate(user: "particle", password: "particle").responseJSON { response in
             switch response.result {
                 
             case .success(let value):
                 let json = JSON(value)
-                print(json)
+                //print(json)
                 accessToken = json["access_token"].stringValue
-                //self.performSegue(withIdentifier: "SignInComplete", sender: self)
+                print(accessToken)
+                self.performSegue(withIdentifier: "SignInComplete", sender: self)
                 
             case .failure(let error):
                 print(error)
