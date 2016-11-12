@@ -26,6 +26,12 @@ class ViewControllerActions: UIViewController ,UITableViewDelegate,UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        statusTable.delegate = self
+        statusTable.dataSource = self
+        
+        actionsTable.delegate = self
+        actionsTable.dataSource = self
 
         deviceName.text = deviceSelected.name
         Alamofire.request("https://api.particle.io/v1/devices/\(deviceSelected.ID!)?access_token=\(accessToken)", method: .get).responseJSON { response in
