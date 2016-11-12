@@ -10,12 +10,12 @@ import Foundation
 
 class device {
     var ID :String!
-    var connected : Bool!
+    var connected : String!
     var lastIP: String!
     var name: String!
     
 
-    init(name: String, connected : Bool, lastIP : String, ID:String) {
+    init(name: String, connected : String, lastIP : String, ID:String) {
         self.name = name
         self.connected = connected
         self.lastIP = lastIP

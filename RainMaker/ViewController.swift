@@ -43,16 +43,6 @@ class ViewController: UIViewController {
          userNameInfo = userName.text!
          passwordInfo = password.text!
         
-    
-//        SparkCloud.sharedInstance().login(withUser: userNameInfo, password: passwordInfo) { error in
-//            if error != nil {
-//                print("Wrong credentials or no internet connectivity, please try again")
-//            }
-//            else {
-//                print("Logged in")
-//            }
-//        }
-        
         let header: HTTPHeaders = [
             "Authorization": "Basic",
             "Accept": "application/json"
@@ -77,7 +67,7 @@ class ViewController: UIViewController {
                 let json = JSON(value)
                 //print(json)
                 accessToken = json["access_token"].stringValue
-                print(accessToken)
+                
                 self.performSegue(withIdentifier: "SignInComplete", sender: self)
                 
             case .failure(let error):

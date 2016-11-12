@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0819312B03C725C9B504EE33 /* Pods_RainMaker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77FD1B2542E9BACBCB95325A /* Pods_RainMaker.framework */; };
+		A664AEE31DD6D8C20094FB53 /* ViewControllerActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A664AEE21DD6D8C20094FB53 /* ViewControllerActions.swift */; };
 		A6D146D71DD5336800B8813C /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D146D61DD5336800B8813C /* ViewController2.swift */; };
 		A6D146D91DD539F700B8813C /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D146D81DD539F700B8813C /* Device.swift */; };
 		A6F7C7761DCD60B600EE602A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F7C7751DCD60B600EE602A /* AppDelegate.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		77FD1B2542E9BACBCB95325A /* Pods_RainMaker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RainMaker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A664AEE21DD6D8C20094FB53 /* ViewControllerActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerActions.swift; sourceTree = "<group>"; };
 		A6AD82C81DCE4961003AFEFC /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "../Bridging-Header.h"; sourceTree = "<group>"; };
 		A6D146D61DD5336800B8813C /* ViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
 		A6D146D81DD539F700B8813C /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
@@ -86,8 +88,9 @@
 				A6AD82C81DCE4961003AFEFC /* Bridging-Header.h */,
 				A6F7C7751DCD60B600EE602A /* AppDelegate.swift */,
 				A6F7C7771DCD60B600EE602A /* ViewController.swift */,
-				A6F7C7791DCD60B600EE602A /* Main.storyboard */,
 				A6D146D61DD5336800B8813C /* ViewController2.swift */,
+				A664AEE21DD6D8C20094FB53 /* ViewControllerActions.swift */,
+				A6F7C7791DCD60B600EE602A /* Main.storyboard */,
 				A6D146D81DD539F700B8813C /* Device.swift */,
 				A6F7C77C1DCD60B600EE602A /* Assets.xcassets */,
 				A6F7C77E1DCD60B600EE602A /* LaunchScreen.storyboard */,
@@ -223,6 +226,7 @@
 				A6F7C7781DCD60B600EE602A /* ViewController.swift in Sources */,
 				A6F7C7761DCD60B600EE602A /* AppDelegate.swift in Sources */,
 				A6D146D71DD5336800B8813C /* ViewController2.swift in Sources */,
+				A664AEE31DD6D8C20094FB53 /* ViewControllerActions.swift in Sources */,
 				A6D146D91DD539F700B8813C /* Device.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

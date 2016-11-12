@@ -10,60 +10,109 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class ViewController2: UIViewController {
+class ViewController2: UIViewController ,UITableViewDelegate,UITableViewDataSource{
 
     var devices = [device]()
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        // Do any additional setup after loading the view.
-    }
-    
-
-    override func viewDidAppear(_ animated: Bool) {
-        
-      
+        tableView.delegate = self
+        tableView.dataSource = self
         
         
-        
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    @IBAction func hi(_ sender: Any) {
         Alamofire.request("https://api.spark.io/v1/devices?access_token="+accessToken, method: .get).responseJSON { response in
-
+            
             switch response.result {
                 
             case .success(let value):
-            let json = JSON(value)
-            
-            
-               
-           //devices.append(device.init(name: <#T##String#>, connected: json["connected"], lastIP: <#T##String#>, ID: <#T##String#>))
-            
-            //print(device.toString(self.devices[0]))
+                let json = JSON(value)
+                
+                
+                for i in 0...(json.array?.count)!-1 {
+                    
+                    
+                    let name: String = json[i]["name"].stringValue
+                    let connected : String = json[i]["connected"].stringValue
+                    let lastIp : String = json[i]["last_ip_address"].stringValue
+                    let id : String = json[i]["id"].stringValue
+                    
+                    self.devices.append(device.init(name: name, connected: connected, lastIP: lastIp, ID: id))
+                    
+                    self.tableView.reloadData()
+                    
+                    
+                }
                 
             case .failure(let error):
                 print(error)
             }
-
+            
             
         }
     }
-    /*
-    // MARK: - Navigation
+    
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBOutlet weak var tableView: UITableView!
+   
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return devices.count;
+        
     }
-    */
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = UITableViewCell()
+        cell.textLabel?.text = devices[indexPath.row].name
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "actions", sender: devices[indexPath.row])
+        
+        
+    }
+    
+    @IBAction func reload(_ sender: Any) {
+        devices = [device]()
+        Alamofire.request("https://api.spark.io/v1/devices?access_token="+accessToken, method: .get).responseJSON { response in
+            
+            switch response.result {
+                
+            case .success(let value):
+                let json = JSON(value)
+                
+                
+                for i in 0...(json.array?.count)!-1 {
+                    
+                    
+                    let name: String = json[i]["name"].stringValue
+                    let connected : String = json[i]["connected"].stringValue
+                    let lastIp : String = json[i]["last_ip_address"].stringValue
+                    let id : String = json[i]["id"].stringValue
+                    
+                    self.devices.append(device.init(name: name, connected: connected, lastIP: lastIp, ID: id))
+                    
+                    self.tableView.reloadData()
+                    
+                    
+                }
+                
+            case .failure(let error):
+                print(error)
+            }
+            
+            
+        }
+        
 
-}
+    }
+   
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let guest = segue.destination as! ViewControllerActions
+        guest.deviceSelected = sender as! device
+    }
+   }
