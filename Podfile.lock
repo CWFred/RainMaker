@@ -15,6 +15,8 @@ PODS:
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - Alamofire (4.0.1)
+  - CalendarView (1.1.2):
+    - SwiftMoment (~> 0.1)
   - Spark-SDK (0.5.1):
     - Spark-SDK/Helpers (= 0.5.1)
     - Spark-SDK/SDK (= 0.5.1)
@@ -22,19 +24,23 @@ PODS:
   - Spark-SDK/SDK (0.5.1):
     - AFNetworking (~> 3.0)
     - Spark-SDK/Helpers
+  - SwiftMoment (0.7)
   - SwiftyJSON (3.1.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
+  - CalendarView
   - Spark-SDK
   - SwiftyJSON
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  CalendarView: 35d51b70586213604edec22a585d105273f6e191
   Spark-SDK: 361c1d3aabc88f7c1eada27427cc8997f5a79ac1
+  SwiftMoment: dc6dd27012e267819104cbb03f74ff9192dd0b42
   SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
 
-PODFILE CHECKSUM: 09db25b09873ca537df1deb399dba4e2fc4570a0
+PODFILE CHECKSUM: 9cbabe7e234fab2abd0678df50d788ba8e0014ea
 
 COCOAPODS: 1.2.0.beta.1

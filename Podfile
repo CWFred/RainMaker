@@ -6,4 +6,5 @@ target 'RainMaker' do
     pod 'Alamofire', '~> 4.0'
     pod "Spark-SDK"
     pod 'SwiftyJSON'
+    pod "CalendarView"
 end
