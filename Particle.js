@@ -8,7 +8,7 @@ Before trying to use this server , install the following:
 1) npm
 2) node.js
 3) run these commands to install the necessary libraries used 
-    npm install node-schedule
+    npm install cron
     npm install request
     npm install body-parser
     npm install express
