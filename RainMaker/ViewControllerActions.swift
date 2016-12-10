@@ -43,7 +43,7 @@ class ViewControllerActions: UIViewController ,UITableViewDelegate,UITableViewDa
         
         
         
-        Alamofire.request("http://ec2-54-211-235-149.compute-1.amazonaws.com:9000/attributes", method: .post,parameters: parameters).responseJSON { response in
+        Alamofire.request("http://ec2-54-87-186-193.compute-1.amazonaws.com:9000/attributes", method: .post,parameters: parameters).responseJSON { response in
             switch response.result {
                 
             case .success(let value):
