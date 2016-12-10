@@ -34,13 +34,24 @@ class ViewControllerActions: UIViewController ,UITableViewDelegate,UITableViewDa
         actionsTable.dataSource = self
 
         deviceName.text = deviceSelected.name
-        Alamofire.request("https://api.particle.io/v1/devices/\(deviceSelected.ID!)?access_token=\(accessToken)", method: .get).responseJSON { response in
+        
+        let parameters: Parameters = [
+            
+            "devId":deviceSelected.ID!,
+            "access_token":accessToken,]
+        
+        
+        
+        
+        Alamofire.request("http://ec2-54-211-235-149.compute-1.amazonaws.com:9000/attributes", method: .post,parameters: parameters).responseJSON { response in
             switch response.result {
                 
             case .success(let value):
+                
                 let json = JSON(value)
-                let funcArray = json["functions"].arrayValue
-                let varArray = json["variables"]
+                
+                let funcArray = json["data"]["functions"].arrayValue
+                let varArray = json["data"]["variables"]
                 
                 for i in funcArray {
                     self.actions.append(i.stringValue)
@@ -53,10 +64,6 @@ class ViewControllerActions: UIViewController ,UITableViewDelegate,UITableViewDa
                 }
                 
                 
-//                for j in varArray {
-//                    self.variables.append(j.stringValue)
-//                    self.statusTable.reloadData()
-//                }
                 
                 
             case .failure(let error):

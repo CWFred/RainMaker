@@ -12,7 +12,7 @@ import SwiftyJSON
 
 class ViewController2: UIViewController ,UITableViewDelegate,UITableViewDataSource{
 
-    var devices = [device]()
+    
   
     
     override func viewDidLoad() {
@@ -21,36 +21,40 @@ class ViewController2: UIViewController ,UITableViewDelegate,UITableViewDataSour
         tableView.delegate = self
         tableView.dataSource = self
         
+        self.tableView.reloadData()
         
-        Alamofire.request("https://api.spark.io/v1/devices?access_token="+accessToken, method: .get).responseJSON { response in
-            
-            switch response.result {
-                
-            case .success(let value):
-                let json = JSON(value)
-                
-                
-                for i in 0...(json.array?.count)!-1 {
-                    
-                    
-                    let name: String = json[i]["name"].stringValue
-                    let connected : String = json[i]["connected"].stringValue
-                    let lastIp : String = json[i]["last_ip_address"].stringValue
-                    let id : String = json[i]["id"].stringValue
-                    
-                    self.devices.append(device.init(name: name, connected: connected, lastIP: lastIp, ID: id))
-                    
-                    self.tableView.reloadData()
-                    
-                    
-                }
-                
-            case .failure(let error):
-                print(error)
-            }
-            
-            
-        }
+        
+        // Using direct connection to particle Cloud.
+//        Alamofire.request("https://api.spark.io/v1/devices?access_token="+accessToken, method: .get).responseJSON { response in
+//            
+//            switch response.result {
+//                
+//            case .success(let value):
+//                let json = JSON(value)
+//                
+//                
+//                for i in 0...(json.array?.count)!-1 {
+//                    
+//                    
+//                    let name: String = json[i]["name"].stringValue
+//                    let connected : String = json[i]["connected"].stringValue
+//                    let lastIp : String = json[i]["last_ip_address"].stringValue
+//                    let id : String = json[i]["id"].stringValue
+//                    
+//                    self.devices.append(device.init(name: name, connected: connected, lastIP: lastIp, ID: id))
+//                    
+//                    self.tableView.reloadData()
+//                    
+//                    
+//                }
+//                
+//            case .failure(let error):
+//                print(error)
+//            }
+//            
+//            
+//        }
+        
     }
     
 
@@ -75,6 +79,7 @@ class ViewController2: UIViewController ,UITableViewDelegate,UITableViewDataSour
         
     }
     
+    // Might be deprecated now that the Node server handles the calling and devices before the screen is loaded.
     @IBAction func reload(_ sender: Any) {
         devices = [device]()
         Alamofire.request("https://api.spark.io/v1/devices?access_token="+accessToken, method: .get).responseJSON { response in
@@ -93,7 +98,7 @@ class ViewController2: UIViewController ,UITableViewDelegate,UITableViewDataSour
                     let lastIp : String = json[i]["last_ip_address"].stringValue
                     let id : String = json[i]["id"].stringValue
                     
-                    self.devices.append(device.init(name: name, connected: connected, lastIP: lastIp, ID: id))
+                    devices.append(device.init(name: name, connected: connected, lastIP: lastIp, ID: id))
                     
                     self.tableView.reloadData()
                     
