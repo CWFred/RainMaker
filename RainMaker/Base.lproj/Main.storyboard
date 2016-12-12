@@ -119,9 +119,9 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nqb-st-tq0">
-                                <rect key="frame" x="138" y="605" width="98" height="30"/>
+                                <rect key="frame" x="141" y="605" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Reload Device"/>
+                                <state key="normal" title="Load Devices"/>
                                 <connections>
                                     <action selector="reload:" destination="vor-kZ-py5" eventType="touchUpInside" id="NFh-dh-i8w"/>
                                 </connections>
@@ -194,6 +194,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7W4-QV-cL0">
+                                <rect key="frame" x="172" y="24" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Map"/>
+                                <connections>
+                                    <action selector="goToMap:" destination="fCx-rN-v7A" eventType="touchUpInside" id="wtw-MG-6d4"/>
+                                    <segue destination="Dqd-iw-tkm" kind="show" identifier="toMaps" id="3yc-Aq-qJD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -212,8 +221,80 @@
             </objects>
             <point key="canvasLocation" x="1846" y="38"/>
         </scene>
+        <!--Map View Controller-->
+        <scene sceneID="wd3-4w-qar">
+            <objects>
+                <viewController id="Dqd-iw-tkm" customClass="MapViewController" customModule="RainMaker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="I33-gH-rHv"/>
+                        <viewControllerLayoutGuide type="bottom" id="oOY-jJ-CFv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7Pz-Us-7Gi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="qly-FL-quZ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="562"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="562" id="mbu-M8-8zM"/>
+                                    <constraint firstAttribute="width" constant="375" id="xJc-5i-pmD"/>
+                                </constraints>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PuX-1m-RCF">
+                                <rect key="frame" x="71" y="604" width="70" height="30"/>
+                                <state key="normal" title="View User"/>
+                                <connections>
+                                    <action selector="displayUser:" destination="Dqd-iw-tkm" eventType="touchUpInside" id="iU1-oE-tCa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nxG-wC-mcj">
+                                <rect key="frame" x="220" y="604" width="84" height="30"/>
+                                <state key="normal" title="View Device"/>
+                                <connections>
+                                    <action selector="displayDevice:" destination="Dqd-iw-tkm" eventType="touchUpInside" id="Dxa-n9-kxs"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z9f-aY-veR">
+                                <rect key="frame" x="170" y="637" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z7L-vq-F5v">
+                                <rect key="frame" x="170" y="637" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="fCx-rN-v7A" kind="show" id="cvw-6e-f4S"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qly-FL-quZ" firstAttribute="top" secondItem="7Pz-Us-7Gi" secondAttribute="top" id="37K-15-MeT"/>
+                            <constraint firstItem="nxG-wC-mcj" firstAttribute="leading" secondItem="PuX-1m-RCF" secondAttribute="trailing" constant="79" id="44b-SE-ZFK"/>
+                            <constraint firstItem="qly-FL-quZ" firstAttribute="leading" secondItem="7Pz-Us-7Gi" secondAttribute="leading" id="AOX-eo-RUs"/>
+                            <constraint firstItem="nxG-wC-mcj" firstAttribute="top" secondItem="qly-FL-quZ" secondAttribute="bottom" constant="42" id="Bem-2b-GZg"/>
+                            <constraint firstAttribute="trailing" secondItem="qly-FL-quZ" secondAttribute="trailing" id="Ge2-n3-ZSw"/>
+                            <constraint firstItem="oOY-jJ-CFv" firstAttribute="top" secondItem="PuX-1m-RCF" secondAttribute="bottom" constant="33" id="KNf-fF-sUf"/>
+                            <constraint firstItem="PuX-1m-RCF" firstAttribute="leading" secondItem="7Pz-Us-7Gi" secondAttribute="leading" constant="71" id="MTA-Hh-U89"/>
+                            <constraint firstAttribute="trailing" secondItem="nxG-wC-mcj" secondAttribute="trailing" constant="71" id="Wb8-10-A8y"/>
+                            <constraint firstItem="oOY-jJ-CFv" firstAttribute="top" secondItem="nxG-wC-mcj" secondAttribute="bottom" constant="33" id="bML-XV-RVV"/>
+                            <constraint firstItem="PuX-1m-RCF" firstAttribute="top" secondItem="qly-FL-quZ" secondAttribute="bottom" constant="42" id="fcy-5Y-x2c"/>
+                            <constraint firstItem="nxG-wC-mcj" firstAttribute="leading" secondItem="PuX-1m-RCF" secondAttribute="trailing" constant="79" id="gIU-RF-EdN"/>
+                            <constraint firstItem="nxG-wC-mcj" firstAttribute="top" secondItem="qly-FL-quZ" secondAttribute="bottom" constant="42" id="qVQ-FH-QmX"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="qly-FL-quZ" id="Kst-uo-tJX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4EY-jE-wZd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2821.5999999999999" y="37.331334332833585"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="a4G-jQ-pGd"/>
+        <segue reference="cvw-6e-f4S"/>
+        <segue reference="K6g-yK-qSv"/>
     </inferredMetricsTieBreakers>
 </document>

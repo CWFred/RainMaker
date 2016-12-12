@@ -5,4 +5,5 @@ use_frameworks!
 target 'RainMaker' do
     pod 'Alamofire', '~> 4.0'
     pod 'SwiftyJSON'
+    pod ‘Spark-SDK’
 end

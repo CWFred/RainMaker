@@ -13,6 +13,13 @@ import SwiftyJSON
 
 class ViewControllerActions: UIViewController ,UITableViewDelegate,UITableViewDataSource{
 
+    @IBAction func goToMap(_ sender: Any) {
+        
+            performSegue(withIdentifier: "toMaps", sender: nil)
+            
+            
+        
+    }
     @IBOutlet weak var deviceName: UILabel!
     
     @IBOutlet weak var statusTable: UITableView!
@@ -122,6 +129,7 @@ class ViewControllerActions: UIViewController ,UITableViewDelegate,UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if(tableView == actionsTable){
+            
             let url = "https://api.particle.io/v1/devices/\(deviceSelected.ID!)/\(tableView.cellForRow(at: indexPath)!.textLabel!.text!)?arg=rando&access_token=\(accessToken)"
             
             Alamofire.request(url, method: .post).responseJSON { response in
