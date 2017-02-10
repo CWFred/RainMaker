@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
+
 class ViewController2: UIViewController ,UITableViewDelegate,UITableViewDataSource{
 
     
@@ -17,15 +18,10 @@ class ViewController2: UIViewController ,UITableViewDelegate,UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tableView.delegate = self
         tableView.dataSource = self
         
-        self.tableView.reloadData()
-        
-        self.tableView.reloadData()
-        self.tableView.reloadData()
-        self.tableView.reloadData()
         self.tableView.reloadData()
         
         // Using direct connection to particle Cloud.

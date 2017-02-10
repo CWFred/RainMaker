@@ -6,4 +6,5 @@ target 'RainMaker' do
     pod 'Alamofire', '~> 4.0'
     pod 'SwiftyJSON'
     pod ‘Spark-SDK’
+    pod 'Toast-Swift', '~> 2.0.0'
 end

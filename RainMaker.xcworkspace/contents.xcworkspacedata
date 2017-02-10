@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:mydorm.gpx">
+   </FileRef>
+   <FileRef
       location = "group:RainMaker.xcodeproj">
    </FileRef>
    <FileRef

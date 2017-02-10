@@ -9,7 +9,9 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import Toast_Swift
 
+var locationinString : String!
 
 class ViewControllerActions: UIViewController ,UITableViewDelegate,UITableViewDataSource{
 
@@ -48,8 +50,6 @@ class ViewControllerActions: UIViewController ,UITableViewDelegate,UITableViewDa
             "access_token":accessToken,]
         
         
-        
-        
         Alamofire.request("http://ec2-54-87-186-193.compute-1.amazonaws.com:9000/attributes", method: .post,parameters: parameters).responseJSON { response in
             switch response.result {
                 
@@ -80,6 +80,36 @@ class ViewControllerActions: UIViewController ,UITableViewDelegate,UITableViewDa
             
         }
     
+        
+        
+        let parameter: Parameters = [
+            
+            "devId":deviceSelected.ID!,
+            "access_token":accessToken,
+            "variableName":"coords",]
+        
+        let url = "http://ec2-54-87-186-193.compute-1.amazonaws.com:9000/value"
+        
+        Alamofire.request(url, method: .post,parameters: parameter).responseJSON { response in
+            switch response.result {
+                
+            case .success(let value):
+                let json = JSON(value)
+                let varVal = json["variableValue"]["body"]["result"].stringValue
+                if(!varVal.isEmpty){
+                   
+                    locationinString = varVal
+                }
+                
+                
+                
+                
+            case .failure(let error):
+                print(error)
+            }
+            
+            
+        }
     }
     
     
@@ -127,11 +157,37 @@ class ViewControllerActions: UIViewController ,UITableViewDelegate,UITableViewDa
 
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        
+//        //1. Create the alert controller.
+//        let alert = UIAlertController(title: "Parameters", message: "Enter paramter in JSON format", preferredStyle: .alert)
+//        
+//        //2. Add the text field. You can configure it however you need.
+//        alert.addTextField { (textField) in
+//            textField.text = "{}"
+//        }
+//        
+//        // 3. Grab the value from the text field, and print it when the user clicks OK.
+//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+//            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+//            print("Text field: \(textField?.text)")
+//        }))
+//        
+//        // 4. Present the alert.
+//        self.present(alert, animated: true, completion: nil)
+//        
         
         if(tableView == actionsTable){
             
             let url = "https://api.particle.io/v1/devices/\(deviceSelected.ID!)/\(tableView.cellForRow(at: indexPath)!.textLabel!.text!)?arg=rando&access_token=\(accessToken)"
             
+//            let parameters: Parameters = [
+//                
+//                "devId":deviceSelected.ID!,
+//                "access_token":accessToken,
+//                "func_name":tableView.cellForRow(at: indexPath)!.textLabel!.text!,]
+//            
+//            
+//            let url2 = "http://ec2-54-87-186-193.compute-1.amazonaws.com:9000/functions"
             Alamofire.request(url, method: .post).responseJSON { response in
                 switch response.result {
                     
@@ -149,16 +205,28 @@ class ViewControllerActions: UIViewController ,UITableViewDelegate,UITableViewDa
             }
         }
         else{
-            let url = "https://api.particle.io/v1/devices/\(deviceSelected.ID!)/\(tableView.cellForRow(at: indexPath)!.textLabel!.text!)?access_token=\(accessToken)"
+            let parameter: Parameters = [
+                
+                "devId":deviceSelected.ID!,
+                "access_token":accessToken,
+                "variableName":tableView.cellForRow(at: indexPath)!.textLabel!.text!,]
+            
+            let url = "http://ec2-54-87-186-193.compute-1.amazonaws.com:9000/value"
         
-            Alamofire.request(url, method: .get).responseJSON { response in
+            Alamofire.request(url, method: .post,parameters: parameter).responseJSON { response in
                 switch response.result {
                     
                 case .success(let value):
                     let json = JSON(value)
-                    print(json["result"])
+                    let varVal = json["variableValue"]["body"]["result"].stringValue
+                    if(!varVal.isEmpty){
+                        self.view.makeToast(varVal, duration: 3.0, position: .bottom)
+                     print(varVal)
+                    }
                     
-                    
+                   
+                
+                   
                 case .failure(let error):
                     print(error)
                 }

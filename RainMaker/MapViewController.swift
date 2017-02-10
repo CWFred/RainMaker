@@ -11,6 +11,10 @@ import MapKit
 import CoreLocation
 var locationDevice: CLLocation!
 var locationUser: CLLocation!
+
+
+
+
     
     class MapViewController: UIViewController, CLLocationManagerDelegate {
           @IBOutlet weak var mapView: MKMapView!
@@ -29,7 +33,6 @@ var locationUser: CLLocation!
         }
         
         @IBAction func displayDevice(_ sender: Any) {
-            locationDevice = CLLocation(latitude: 41.7637, longitude: -72.6852)
             let dropPin = MKPointAnnotation()
             dropPin.coordinate = locationDevice.coordinate
             dropPin.title = "Device"
@@ -56,10 +59,16 @@ var locationUser: CLLocation!
         override func viewDidLoad()
         {
             super.viewDidLoad()
+            
             manager.delegate = self
             manager.desiredAccuracy = kCLLocationAccuracyBest
             manager.requestWhenInUseAuthorization()
             manager.startUpdatingLocation()
+            var latlong : [String]
+            latlong = locationinString.components(separatedBy: ",")
+            
+            locationDevice = CLLocation(latitude: Double(latlong[0])!, longitude: Double(latlong[1])!)
+            
         }
         
         override func didReceiveMemoryWarning() {

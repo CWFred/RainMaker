@@ -13,6 +13,7 @@ class device {
     var connected : String!
     var lastIP: String!
     var name: String!
+   
     
 
     init(name: String, connected : String, lastIP : String, ID:String) {
@@ -20,6 +21,7 @@ class device {
         self.connected = connected
         self.lastIP = lastIP
         self.ID = ID
+        
     }
     
     func toString() -> String {

@@ -26,12 +26,10 @@ var token ;
 var particle = new Particle();
 var app = new express();
 
-var test1 = new Date();
-console.log(test1);
-
+var test1 = new Date(2016,11,14,22,53,12);
 var CronJob = require('cron').CronJob;
 new CronJob(test1, function(){
-    console.log('This message will fire at exactly 10:53 PM est');
+    console.log('This message will fire at exactly 10:53 PM est on December 14th 2016');
 }, null, true, "America/Port-au-Prince");
 
     
@@ -92,6 +90,28 @@ devicesPr.then(
 });
 
 
+app.post('/functions', (req, res) => {
+    
+    let devId = req.body.devId;
+    let token = req.body.access_token; 
+    let funcName = req.body.func_name;
+
+    
+    
+  var fnPr = particle.callFunction({ deviceId: devId, name: funcName, argument: 'D0:HIGH', auth: token });
+
+fnPr.then(
+  function(data) {
+    console.log('Function called succesfully:', data);
+      res.send(JSON.stringify({'data' : data}));
+  }, function(err) {
+    console.log('An error occurred:', err);
+  });
+     
+});
+
+
+
 app.post('/attributes', (req, res) => {
     
     let devId = req.body.devId;
@@ -109,6 +129,29 @@ devicesPr.then(
   }
 );
      
+});
+
+
+
+app.post('/value', (req, res) => {
+    
+    console.log("value test");
+  
+    let devId = req.body.devId;
+    let token = req.body.access_token; 
+    let variableName =  req.body.variableName;
+
+    particle.getVariable({ deviceId: devId, name: variableName, auth: token }).then(function(data) {
+  console.log('Device variable retrieved successfully:', data);
+        
+        res.send(JSON.stringify({'variableValue':data}));
+        console.log(data);
+        
+}, function(err) {
+  console.log('An error occurred while getting attrs:', err);
+});
+    
+   
 });
 
 
