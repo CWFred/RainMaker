@@ -26,11 +26,12 @@ var token ;
 var particle = new Particle();
 var app = new express();
 
-var test1 = new Date(2016,11,14,22,53,12);
-var CronJob = require('cron').CronJob;
-new CronJob(test1, function(){
-    console.log('This message will fire at exactly 10:53 PM est on December 14th 2016');
-}, null, true, "America/Port-au-Prince");
+
+//var CronJob = require('cron').CronJob;
+//new CronJob('* * * * * *', function(){
+//    console.log('You will see this message every second');
+//}, null, true, "America/Los_Angeles");
+
 
     
 

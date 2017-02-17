@@ -14,13 +14,13 @@ import Toast_Swift
 var locationinString : String!
 
 class ViewControllerActions: UIViewController ,UITableViewDelegate,UITableViewDataSource{
+    
+    var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView()
 
     @IBAction func goToMap(_ sender: Any) {
         
             performSegue(withIdentifier: "toMaps", sender: nil)
-            
-            
-        
+   
     }
     @IBOutlet weak var deviceName: UILabel!
     
@@ -80,10 +80,16 @@ class ViewControllerActions: UIViewController ,UITableViewDelegate,UITableViewDa
             
         }
     
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        view.addSubview(activityIndicator)
         
+        activityIndicator.startAnimating()
+        
+       
         
         let parameter: Parameters = [
-            
             "devId":deviceSelected.ID!,
             "access_token":accessToken,
             "variableName":"coords",]
@@ -99,6 +105,7 @@ class ViewControllerActions: UIViewController ,UITableViewDelegate,UITableViewDa
                 if(!varVal.isEmpty){
                    
                     locationinString = varVal
+                      
                 }
                 
                 
@@ -110,6 +117,8 @@ class ViewControllerActions: UIViewController ,UITableViewDelegate,UITableViewDa
             
             
         }
+        
+        activityIndicator.stopAnimating()
     }
     
     

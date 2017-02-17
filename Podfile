@@ -7,4 +7,5 @@ target 'RainMaker' do
     pod 'SwiftyJSON'
     pod ‘Spark-SDK’
     pod 'Toast-Swift', '~> 2.0.0'
+    pod 'JTAppleCalendar', '~> 6.0'
 end

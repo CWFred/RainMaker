@@ -18,6 +18,9 @@
 		A6F7C77B1DCD60B600EE602A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6F7C7791DCD60B600EE602A /* Main.storyboard */; };
 		A6F7C77D1DCD60B600EE602A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6F7C77C1DCD60B600EE602A /* Assets.xcassets */; };
 		A6F7C7801DCD60B600EE602A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6F7C77E1DCD60B600EE602A /* LaunchScreen.storyboard */; };
+		C83A51EC1E568AB6001A5370 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83A51E91E568AB6001A5370 /* CellView.swift */; };
+		C83A51ED1E568AB6001A5370 /* CellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C83A51EA1E568AB6001A5370 /* CellView.xib */; };
+		C83A51EE1E568AB6001A5370 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83A51EB1E568AB6001A5370 /* CalendarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +28,6 @@
 		A6025DC51DFDC2E600B177FB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A6025DC71DFDC41100B177FB /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A664AEE21DD6D8C20094FB53 /* ViewControllerActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerActions.swift; sourceTree = "<group>"; };
-		A6AD82C81DCE4961003AFEFC /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "../Bridging-Header.h"; sourceTree = "<group>"; };
 		A6D146D61DD5336800B8813C /* ViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
 		A6D146D81DD539F700B8813C /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		A6F7C7721DCD60B600EE602A /* RainMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RainMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,6 +37,9 @@
 		A6F7C77C1DCD60B600EE602A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A6F7C77F1DCD60B600EE602A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A6F7C7811DCD60B600EE602A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C83A51E91E568AB6001A5370 /* CellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellView.swift; path = ../../CalendarBeta/CalendarBeta/CellView.swift; sourceTree = "<group>"; };
+		C83A51EA1E568AB6001A5370 /* CellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CellView.xib; path = ../../CalendarBeta/CalendarBeta/CellView.xib; sourceTree = "<group>"; };
+		C83A51EB1E568AB6001A5370 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarViewController.swift; path = ../../CalendarBeta/CalendarBeta/CalendarViewController.swift; sourceTree = "<group>"; };
 		D9A1524F20B008AFF8F0924B /* Pods-RainMaker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RainMaker.release.xcconfig"; path = "Pods/Target Support Files/Pods-RainMaker/Pods-RainMaker.release.xcconfig"; sourceTree = "<group>"; };
 		ED35417EA764FBE7C1B72BBC /* Pods-RainMaker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RainMaker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RainMaker/Pods-RainMaker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,7 +96,6 @@
 		A6F7C7741DCD60B600EE602A /* RainMaker */ = {
 			isa = PBXGroup;
 			children = (
-				A6AD82C81DCE4961003AFEFC /* Bridging-Header.h */,
 				A6F7C7751DCD60B600EE602A /* AppDelegate.swift */,
 				A6F7C7771DCD60B600EE602A /* ViewController.swift */,
 				A6D146D61DD5336800B8813C /* ViewController2.swift */,
@@ -100,10 +104,21 @@
 				A6025DC71DFDC41100B177FB /* MapViewController.swift */,
 				A6D146D81DD539F700B8813C /* Device.swift */,
 				A6F7C77C1DCD60B600EE602A /* Assets.xcassets */,
+				C83A51EF1E568B04001A5370 /* Calendar Stuff */,
 				A6F7C77E1DCD60B600EE602A /* LaunchScreen.storyboard */,
 				A6F7C7811DCD60B600EE602A /* Info.plist */,
 			);
 			path = RainMaker;
+			sourceTree = "<group>";
+		};
+		C83A51EF1E568B04001A5370 /* Calendar Stuff */ = {
+			isa = PBXGroup;
+			children = (
+				C83A51EA1E568AB6001A5370 /* CellView.xib */,
+				C83A51E91E568AB6001A5370 /* CellView.swift */,
+				C83A51EB1E568AB6001A5370 /* CalendarViewController.swift */,
+			);
+			name = "Calendar Stuff";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,6 +184,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C83A51ED1E568AB6001A5370 /* CellView.xib in Resources */,
 				A6F7C7801DCD60B600EE602A /* LaunchScreen.storyboard in Resources */,
 				A6F7C77D1DCD60B600EE602A /* Assets.xcassets in Resources */,
 				A6F7C77B1DCD60B600EE602A /* Main.storyboard in Resources */,
@@ -236,6 +252,8 @@
 				A6D146D71DD5336800B8813C /* ViewController2.swift in Sources */,
 				A664AEE31DD6D8C20094FB53 /* ViewControllerActions.swift in Sources */,
 				A6D146D91DD539F700B8813C /* Device.swift in Sources */,
+				C83A51EE1E568AB6001A5370 /* CalendarViewController.swift in Sources */,
+				C83A51EC1E568AB6001A5370 /* CellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
