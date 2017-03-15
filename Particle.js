@@ -25,12 +25,11 @@ var request = require('request');
 var token ;
 var particle = new Particle();
 var app = new express();
+var dateobject = new Date();
+var CronJob = require('cron').CronJob;
 
 
-//var CronJob = require('cron').CronJob;
-//new CronJob('* * * * * *', function(){
-//    console.log('You will see this message every second');
-//}, null, true, "America/Los_Angeles");
+
 
 
     
@@ -153,6 +152,49 @@ app.post('/value', (req, res) => {
 });
     
    
+});
+
+app.post('/schedule', (req, res) => {
+    
+    console.log("schedule test");
+  
+    let devId = req.body.devId;
+    let token = req.body.access_token; 
+    let funcName =  req.body.functionName;
+    let args = req.body.argument;
+    let year = req.body.year;
+    let month = req.body.month; 
+    let day =  req.body.day;
+    let hour = req.body.hour;
+    let minute = req.body.minute; 
+   
+console.log(devId);
+console.log(token);
+    
+     dateobject = new Date(year, month-1, day, hour, minute, 0, 0 )
+     dateobject.setHours(dateobject.getHours() + 4);
+     let stringobj = dateobject.toString();
+     console.log(stringobj);
+    
+    
+    new CronJob(dateobject, function(){
+        
+            
+  var fnPr = particle.callFunction({ deviceId: devId, name: funcName, argument: 'D0:HIGH', auth: token });
+
+fnPr.then(
+  function(data) {
+    console.log('Function called succesfully:', data);
+      res.send(JSON.stringify({'data' : data}));
+  }, function(err) {
+    console.log('An error occurred:', err);
+  });
+        
+        
+    console.log("Kaka santi");
+        
+}, null, true, "UTC");
+    
 });
 
 

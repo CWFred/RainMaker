@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -204,11 +205,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ga-ZA-fJN">
-                                <rect key="frame" x="155" y="630" width="64" height="30"/>
+                                <rect key="frame" x="156" y="630" width="62" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Schedule"/>
+                                <state key="normal" title="Calendar"/>
                                 <connections>
-                                    <segue destination="hiX-7E-uXD" kind="show" id="EZu-oL-qr1"/>
+                                    <segue destination="5lS-X6-Va1" kind="show" identifier="toCal" id="xgv-5b-nZM"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -230,32 +231,73 @@
             <point key="canvasLocation" x="1845.5999999999999" y="37.331334332833585"/>
         </scene>
         <!--Calendar View Controller-->
-        <scene sceneID="yEb-iO-Py3">
+        <scene sceneID="zYQ-YA-1Ty">
             <objects>
-                <viewController id="hiX-7E-uXD" customClass="CalendarViewController" customModule="RainMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5lS-X6-Va1" customClass="CalendarViewController" customModule="RainMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="eR4-Cj-BuC"/>
-                        <viewControllerLayoutGuide type="bottom" id="hkq-FV-WDD"/>
+                        <viewControllerLayoutGuide type="top" id="5on-Mx-2bO"/>
+                        <viewControllerLayoutGuide type="bottom" id="ThM-qH-1nG"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="IJv-1B-DWN">
+                    <view key="view" contentMode="scaleToFill" id="PLj-PK-iJt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t0w-LM-fL6" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BBR-6D-2yM" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
+                                <rect key="frame" x="17" y="20" width="341" height="262"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="BBR-6D-2yM" secondAttribute="height" multiplier="11:12" id="bzF-CN-fNM"/>
+                                    <constraint firstAttribute="width" secondItem="BBR-6D-2yM" secondAttribute="height" multiplier="341:262" id="c3w-mE-U1P"/>
+                                </constraints>
                             </view>
+                            <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="XCi-5Z-uhm">
+                                <rect key="frame" x="0.0" y="306" width="375" height="216"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="XCi-5Z-uhm" secondAttribute="height" multiplier="125:72" id="Hgo-Rq-UEC"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="510366158.98926097">
+                                    <!--2017-03-05 00:22:38 +0000-->
+                                </date>
+                                <connections>
+                                    <action selector="pickerValueChanged:" destination="5lS-X6-Va1" eventType="valueChanged" id="E6K-7o-8dM"/>
+                                </connections>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzU-mO-Hna">
+                                <rect key="frame" x="22" y="617" width="34" height="30"/>
+                                <state key="normal" title="Back"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YgV-tA-XhS">
+                                <rect key="frame" x="294" y="617" width="64" height="30"/>
+                                <state key="normal" title="Schedule"/>
+                                <connections>
+                                    <action selector="schedule:" destination="5lS-X6-Va1" eventType="touchUpInside" id="DIB-7c-LJ7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="XCi-5Z-uhm" secondAttribute="trailing" id="H2i-Pv-oOv"/>
+                            <constraint firstItem="BBR-6D-2yM" firstAttribute="top" secondItem="5on-Mx-2bO" secondAttribute="bottom" id="Hrv-ST-N0i"/>
+                            <constraint firstItem="YgV-tA-XhS" firstAttribute="leading" secondItem="uzU-mO-Hna" secondAttribute="trailing" constant="238" id="Iqt-BY-B4t"/>
+                            <constraint firstItem="ThM-qH-1nG" firstAttribute="top" secondItem="uzU-mO-Hna" secondAttribute="bottom" constant="20" id="Mb5-Mi-SfE"/>
+                            <constraint firstItem="XCi-5Z-uhm" firstAttribute="leading" secondItem="PLj-PK-iJt" secondAttribute="leading" id="gel-fY-QzP"/>
+                            <constraint firstItem="XCi-5Z-uhm" firstAttribute="top" secondItem="BBR-6D-2yM" secondAttribute="bottom" constant="24" id="ivb-8W-5lG"/>
+                            <constraint firstItem="BBR-6D-2yM" firstAttribute="leading" secondItem="PLj-PK-iJt" secondAttribute="leadingMargin" constant="1" id="lC3-vE-ivH"/>
+                            <constraint firstItem="ThM-qH-1nG" firstAttribute="top" secondItem="YgV-tA-XhS" secondAttribute="bottom" constant="20" id="lsz-zC-oNx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YgV-tA-XhS" secondAttribute="trailing" constant="1" id="r9j-ga-GSF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BBR-6D-2yM" secondAttribute="trailing" constant="1" id="wpc-FK-iSa"/>
+                            <constraint firstItem="uzU-mO-Hna" firstAttribute="leading" secondItem="PLj-PK-iJt" secondAttribute="leadingMargin" constant="6" id="xbY-bp-mBx"/>
+                            <constraint firstItem="YgV-tA-XhS" firstAttribute="leading" secondItem="uzU-mO-Hna" secondAttribute="trailing" constant="238" id="zyD-YB-ZSr"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="calendarView" destination="t0w-LM-fL6" id="IjL-7l-9a5"/>
+                        <outlet property="calendarView" destination="BBR-6D-2yM" id="Esm-Kb-DSk"/>
+                        <outlet property="datePicker" destination="XCi-5Z-uhm" id="w51-IG-CzM"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Zwh-1s-gda" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ifg-ky-jUX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1884" y="776.76161919040487"/>
+            <point key="canvasLocation" x="1960.8" y="941.37931034482767"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="wd3-4w-qar">
@@ -330,7 +372,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="cvw-6e-f4S"/>
+        <segue reference="sj5-6l-4fX"/>
         <segue reference="K6g-yK-qSv"/>
     </inferredMetricsTieBreakers>
 </document>

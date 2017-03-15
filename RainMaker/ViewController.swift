@@ -123,43 +123,6 @@ class ViewController: UIViewController {
          userNameInfo = userName.text!
          passwordInfo = password.text!
         
-// Direct connection to Particle CLoud
-//        let header: HTTPHeaders = [
-//            "Authorization": "Basic",
-//            "Accept": "application/json"
-//        ]
-//        
-//        
-//        
-//        let parameters: Parameters = [
-//            "grant_type":"password",
-//            "client_id":123,
-//            "client_secret":123,
-//            "username":userNameInfo,
-//            "password":passwordInfo,
-//
-//            
-//        ]
-//        
-//        Alamofire.request("https://api.particle.io/oauth/token", method: .post, parameters: parameters, headers: header).authenticate(user: "particle", password: "particle").responseJSON { response in
-//            switch response.result {
-//                
-//            case .success(let value):
-//                let json = JSON(value)
-//                //print(json)
-//                accessToken = json["access_token"].stringValue
-//                
-//                self.performSegue(withIdentifier: "SignInComplete", sender: self)
-//                
-//            case .failure(let error):
-//                print(error)
-//            }
-//            
-//           
-//        }
-        
-// Using nodeserver
-        
                 let parameters: Parameters = [
 
                     "login":userNameInfo,

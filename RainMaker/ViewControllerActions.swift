@@ -12,7 +12,10 @@ import SwiftyJSON
 import Toast_Swift
 
 var locationinString : String!
+var deviceID : String!
 
+
+ 
 class ViewControllerActions: UIViewController ,UITableViewDelegate,UITableViewDataSource{
     
     var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView()
@@ -28,10 +31,10 @@ class ViewControllerActions: UIViewController ,UITableViewDelegate,UITableViewDa
     
     @IBOutlet weak var actionsTable: UITableView!
     
+    var deviceSelected = device.init(name: "error", connected: "error", lastIP: "error", ID: "error")
     var actions = [String]()
     var variables = [String]()
     
-    var deviceSelected = device.init(name: "error", connected: "error", lastIP: "error", ID: "error")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +46,7 @@ class ViewControllerActions: UIViewController ,UITableViewDelegate,UITableViewDa
         actionsTable.dataSource = self
 
         deviceName.text = deviceSelected.name
-        
+        deviceID = deviceSelected.ID
         let parameters: Parameters = [
             
             "devId":deviceSelected.ID!,
@@ -166,37 +169,13 @@ class ViewControllerActions: UIViewController ,UITableViewDelegate,UITableViewDa
 
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        
-//        //1. Create the alert controller.
-//        let alert = UIAlertController(title: "Parameters", message: "Enter paramter in JSON format", preferredStyle: .alert)
-//        
-//        //2. Add the text field. You can configure it however you need.
-//        alert.addTextField { (textField) in
-//            textField.text = "{}"
-//        }
-//        
-//        // 3. Grab the value from the text field, and print it when the user clicks OK.
-//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
-//            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-//            print("Text field: \(textField?.text)")
-//        }))
-//        
-//        // 4. Present the alert.
-//        self.present(alert, animated: true, completion: nil)
-//        
+       
         
         if(tableView == actionsTable){
             
             let url = "https://api.particle.io/v1/devices/\(deviceSelected.ID!)/\(tableView.cellForRow(at: indexPath)!.textLabel!.text!)?arg=rando&access_token=\(accessToken)"
             
-//            let parameters: Parameters = [
-//                
-//                "devId":deviceSelected.ID!,
-//                "access_token":accessToken,
-//                "func_name":tableView.cellForRow(at: indexPath)!.textLabel!.text!,]
-//            
-//            
-//            let url2 = "http://ec2-54-87-186-193.compute-1.amazonaws.com:9000/functions"
+
             Alamofire.request(url, method: .post).responseJSON { response in
                 switch response.result {
                     
@@ -245,7 +224,9 @@ class ViewControllerActions: UIViewController ,UITableViewDelegate,UITableViewDa
         
     }
 
- 
+    
+  
+
     
 
     
