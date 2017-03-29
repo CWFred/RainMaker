@@ -123,12 +123,14 @@ class ViewController: UIViewController {
          userNameInfo = userName.text!
          passwordInfo = password.text!
         
+      
+        
                 let parameters: Parameters = [
 
                     "login":userNameInfo,
                     "password":passwordInfo,]
         
-        Alamofire.request("http://ec2-54-87-186-193.compute-1.amazonaws.com:9000/login", method: .post,parameters :parameters).responseJSON { response in
+        Alamofire.request("http://ec2-54-174-126-95.compute-1.amazonaws.com:9000/login", method: .post,parameters :parameters).responseJSON { response in
                     switch response.result {
         
                     case .success(let value):
