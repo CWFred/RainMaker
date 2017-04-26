@@ -52,7 +52,7 @@ var app = new express();
 var dateobject = new Date();
 var CronJob = require('cron').CronJob;
 var fs = require('fs');
-// very very very bad, the use of global variables is not at all recommended but could not for the life of me figure out how to get these two variables to work for the weather api post request. 
+// very very very bad, the use of global variables is not at all recommended but could not for the life of me figure out how to get these five variables to work for the weather api post request. 
 global.latitude;
 global.longitude;
 global.precipitationProbability;

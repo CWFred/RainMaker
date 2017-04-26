@@ -18,9 +18,9 @@
 		A6F7C77B1DCD60B600EE602A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6F7C7791DCD60B600EE602A /* Main.storyboard */; };
 		A6F7C77D1DCD60B600EE602A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6F7C77C1DCD60B600EE602A /* Assets.xcassets */; };
 		A6F7C7801DCD60B600EE602A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6F7C77E1DCD60B600EE602A /* LaunchScreen.storyboard */; };
-		C88B1A561E6B860500CC2C2C /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88B1A531E6B860500CC2C2C /* CellView.swift */; };
-		C88B1A571E6B860500CC2C2C /* CellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C88B1A541E6B860500CC2C2C /* CellView.xib */; };
-		C88B1A581E6B860500CC2C2C /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88B1A551E6B860500CC2C2C /* CalendarViewController.swift */; };
+		C88025AD1EAFA55F00DF4A30 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88025AA1EAFA55F00DF4A30 /* CalendarViewController.swift */; };
+		C88025AE1EAFA55F00DF4A30 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88025AB1EAFA55F00DF4A30 /* CellView.swift */; };
+		C88025AF1EAFA55F00DF4A30 /* CellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C88025AC1EAFA55F00DF4A30 /* CellView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,9 +37,9 @@
 		A6F7C77C1DCD60B600EE602A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A6F7C77F1DCD60B600EE602A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A6F7C7811DCD60B600EE602A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C88B1A531E6B860500CC2C2C /* CellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellView.swift; path = "../../../CalendarTutorial-master/Part2/CalendarTutorial/CellView.swift"; sourceTree = "<group>"; };
-		C88B1A541E6B860500CC2C2C /* CellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CellView.xib; path = "../../../CalendarTutorial-master/Part2/CalendarTutorial/CellView.xib"; sourceTree = "<group>"; };
-		C88B1A551E6B860500CC2C2C /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarViewController.swift; path = "../../../CalendarTutorial-master/Part2/CalendarTutorial/CalendarViewController.swift"; sourceTree = "<group>"; };
+		C88025AA1EAFA55F00DF4A30 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarViewController.swift; path = "Calendar Stuff/CalendarViewController.swift"; sourceTree = "<group>"; };
+		C88025AB1EAFA55F00DF4A30 /* CellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellView.swift; path = "Calendar Stuff/CellView.swift"; sourceTree = "<group>"; };
+		C88025AC1EAFA55F00DF4A30 /* CellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CellView.xib; path = "Calendar Stuff/CellView.xib"; sourceTree = "<group>"; };
 		D9A1524F20B008AFF8F0924B /* Pods-RainMaker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RainMaker.release.xcconfig"; path = "Pods/Target Support Files/Pods-RainMaker/Pods-RainMaker.release.xcconfig"; sourceTree = "<group>"; };
 		ED35417EA764FBE7C1B72BBC /* Pods-RainMaker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RainMaker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RainMaker/Pods-RainMaker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,19 +106,19 @@
 				A6F7C77C1DCD60B600EE602A /* Assets.xcassets */,
 				A6F7C77E1DCD60B600EE602A /* LaunchScreen.storyboard */,
 				A6F7C7811DCD60B600EE602A /* Info.plist */,
-				C88B1A501E6B855C00CC2C2C /* Calendar Stuff */,
+				C88025B01EAFA5CA00DF4A30 /* Calendar */,
 			);
 			path = RainMaker;
 			sourceTree = "<group>";
 		};
-		C88B1A501E6B855C00CC2C2C /* Calendar Stuff */ = {
+		C88025B01EAFA5CA00DF4A30 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				C88B1A531E6B860500CC2C2C /* CellView.swift */,
-				C88B1A541E6B860500CC2C2C /* CellView.xib */,
-				C88B1A551E6B860500CC2C2C /* CalendarViewController.swift */,
+				C88025AA1EAFA55F00DF4A30 /* CalendarViewController.swift */,
+				C88025AB1EAFA55F00DF4A30 /* CellView.swift */,
+				C88025AC1EAFA55F00DF4A30 /* CellView.xib */,
 			);
-			name = "Calendar Stuff";
+			name = Calendar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,7 +151,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Jean Piard";
 				TargetAttributes = {
 					A6F7C7711DCD60B600EE602A = {
@@ -184,7 +184,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C88B1A571E6B860500CC2C2C /* CellView.xib in Resources */,
+				C88025AF1EAFA55F00DF4A30 /* CellView.xib in Resources */,
 				A6F7C7801DCD60B600EE602A /* LaunchScreen.storyboard in Resources */,
 				A6F7C77D1DCD60B600EE602A /* Assets.xcassets in Resources */,
 				A6F7C77B1DCD60B600EE602A /* Main.storyboard in Resources */,
@@ -249,10 +249,10 @@
 				A6F7C7781DCD60B600EE602A /* ViewController.swift in Sources */,
 				A6025DC81DFDC41100B177FB /* MapViewController.swift in Sources */,
 				A6F7C7761DCD60B600EE602A /* AppDelegate.swift in Sources */,
-				C88B1A581E6B860500CC2C2C /* CalendarViewController.swift in Sources */,
 				A6D146D71DD5336800B8813C /* ViewController2.swift in Sources */,
-				C88B1A561E6B860500CC2C2C /* CellView.swift in Sources */,
+				C88025AE1EAFA55F00DF4A30 /* CellView.swift in Sources */,
 				A664AEE31DD6D8C20094FB53 /* ViewControllerActions.swift in Sources */,
+				C88025AD1EAFA55F00DF4A30 /* CalendarViewController.swift in Sources */,
 				A6D146D91DD539F700B8813C /* Device.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -371,7 +371,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "RainMaker/Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "Pods/**";
 				VALIDATE_PRODUCT = YES;

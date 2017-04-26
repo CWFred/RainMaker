@@ -27,16 +27,6 @@ class device {
     func toString() -> String {
         return "name: "+name+" ,id: "+ID+" ,Last IP adress:"+lastIP
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+ 
     
 }
