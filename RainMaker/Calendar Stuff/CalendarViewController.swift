@@ -3,6 +3,7 @@
 //  CalendarTutorial
 //
 //  Created by Jeron Thomas on 2016-10-15.
+//  Edited by Jean Emmanuel Frednick Piard on 2017-02-17.
 //  Copyright © 2016 OS-Tech. All rights reserved.
 //
 
@@ -12,6 +13,7 @@ import Alamofire
 import SwiftyJSON
 
 class CalendarViewController: UIViewController{
+    
     
     func activatealert(){
         let alertController = UIAlertController(title: "Opening the valve", message: "The number of minutes the valve will be open.", preferredStyle: .alert)
@@ -112,10 +114,12 @@ class CalendarViewController: UIViewController{
     }
     
     
-   
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        datePicker.setValue(UIColor.white, forKeyPath: "textColor")
+        datePicker.datePickerMode = .countDownTimer
+        datePicker.datePickerMode = .dateAndTime
         
         calendarView.dataSource = self
         calendarView.delegate = self

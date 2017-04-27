@@ -35,7 +35,7 @@ var locationUser: CLLocation!
         @IBAction func displayDevice(_ sender: Any) {
             let dropPin = MKPointAnnotation()
             dropPin.coordinate = locationDevice.coordinate
-            dropPin.title = "Device"
+            dropPin.title = "Device Location"
             mapView.addAnnotation(dropPin)
             
             
@@ -65,9 +65,9 @@ var locationUser: CLLocation!
             manager.requestWhenInUseAuthorization()
             manager.startUpdatingLocation()
             //var latlong : [String]
-           // latlong = locationinString.components(separatedBy: ",")
+            //latlong = locationinString.components(separatedBy: ",")
             
-           // locationDevice = CLLocation(latitude: Double(latlong[0])!, longitude: Double(latlong[1])!)
+            //locationDevice = CLLocation(latitude: Double(latlong[0])!, longitude: Double(latlong[1])!)
             
         }
         
