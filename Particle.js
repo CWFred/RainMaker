@@ -1,4 +1,4 @@
-'use strict';
+
 //Developped by Jean Piard (CodeWarriorFred)
 //Date : December 9th 2016
 //Title : Rainmaker Node Server.
@@ -18,28 +18,6 @@ Before trying to use this server , install the following:
 4)  hey, have fun okay buddy ?
 */
 
-//database interface declaration and setup.
-var mongodb = require('mongodb');
-var MongoClient = mongodb.MongoClient;
-MongoClient.connect("mongodb://localhost:27017/capstoneDB", function(err, db) {
-  if(!err) {
-    console.log("We are connected");
-  }
-  var collection = db.collection('test');
-    
-  var doc1 = {'hello':'doc1'};
-  var doc2 = {'hello':'doc2'};
-  
-
-  collection.insert(doc1);
-
-  collection.insert(doc2, {w:1}, function(err, result) {});
-
-  
-});
-
-
-
 //rest of the declaration
 var cors = require('cors');
 var Particle = require('particle-api-js');
@@ -53,11 +31,12 @@ var dateobject = new Date();
 var CronJob = require('cron').CronJob;
 var fs = require('fs');
 // very very very bad, the use of global variables is not at all recommended but could not for the life of me figure out how to get these five variables to work for the weather api post request. 
-global.latitude;
-global.longitude;
-global.precipitationProbability;
-global.temperatureAtLocation; 
-global.humidityAtLocation; 
+global.latitude = 0;
+global.longitude = 0;
+global.houroffset = 0;
+global.precipitationProbability = 0;
+global.temperatureAtLocation= 0; 
+global.humidityAtLocation=0; 
 
 
 app.set('views', __dirname + '/views');
@@ -187,6 +166,7 @@ app.post('/schedule', (req, res) => {
     let day =  req.body.day;
     let hour = req.body.hour;
     let minute = req.body.minute; 
+    let offset = 4;
     global.latitude =  req.body.latitude;
     global.longitude = req.body.longitude;
     
@@ -195,35 +175,33 @@ console.log("Arguments:"+args);
 console.log("Function_Name:"+funcName);
 console.log("Device_ID:"+devId);
 console.log("Access_token:"+token);
-console.log("Lat:"+latitude);
-console.log("Long:"+longitude);
+console.log("Lat:"+global.latitude);
+console.log("Long:"+global.longitude);
     
     
+        var apiSecretKey = "c616af2a21c4b7f2f066cce3f4b9a5a4"; 
     
-    var apiSecretKey = "c616af2a21c4b7f2f066cce3f4b9a5a4"; 
-    
-    // request to the weather api for precipitation, temperature and humidity. 
+    // request to the weather api for hour offset. 
 request({
     url: "https://api.darksky.net/forecast/c616af2a21c4b7f2f066cce3f4b9a5a4/"+global.latitude+","+global.longitude,
     method: "GET",
     json: true
 }, function (error, response, body){
-    console.log(response.body);
-    global.precipitationProbability = response.body.currently.precipProbability;
-    global.temperatureAtLocation = response.body.currently.temperature;
-    global.humidityAtLocation = response.body.currently.humidity;
-    global.hourOffset = -1 * response.body.currently.offset; 
- 
+    offset = -1 * response.body.offset; //not exactly working. 
+   
 });
-    
-     dateobject = new Date(year, month-1, day, hour, minute, 0, 0 )
-     dateobject.setHours(dateobject.getHours() + global.hourOffset);
+     
+     var dateobject = new Date(year, month-1, day, hour, minute, 0, 0 );
+     dateobject.setHours(dateobject.getHours()+offset);
      let stringobj = dateobject.toString();
      console.log(stringobj);
     
     
     
-    new CronJob(dateobject, function(){   
+    new CronJob(dateobject, function(){
+        
+        
+        
 
         // this is where to put the logic for testing for the weather. 
         // make call to darksky weather api
@@ -233,7 +211,35 @@ request({
         // the average temperature and soil humity are also tested here. 
         // This is gonna be pretty simple. 
         
-  var fnPr = particle.callFunction({ deviceId: devId, name: funcName, argument: args, auth: token });
+    var apiSecretKey = "c616af2a21c4b7f2f066cce3f4b9a5a4"; 
+    
+    // request to the weather api for precipitation, temperature and humidity. 
+request({
+    url: "https://api.darksky.net/forecast/c616af2a21c4b7f2f066cce3f4b9a5a4/"+global.latitude+","+global.longitude,
+    method: "GET",
+    json: true
+}, function (error, response, body){
+    show_results(response);
+});
+        
+        
+  
+}, null, true, "UTC");
+        
+});
+
+function show_results(response) {
+    
+    global.precipitationProbability = response.body.currently.precipProbability;
+    global.temperatureAtLocation = response.body.currently.temperature;
+    global.humidityAtLocation = response.body.currently.humidity;
+    global.houroffset = -1 * response.body.offset; 
+    
+    console.log(global.precipitationProbability);
+    console.log(global.temperatureAtLocation);
+    console.log(global.humidityAtLocation);
+          
+  var fnPr = particle.callFunction({ deviceId:'58002b000b51343334363138', name:'open', argument:'', auth: '094b8561d7d11b61931e4be4ddce44781b49c9ad' });
 
 fnPr.then(
   function(data) {
@@ -242,9 +248,9 @@ fnPr.then(
   }, function(err) {
     console.log('An error occurred:', err);
   });
-}, null, true, "UTC");
     
-});
+}
+
 
 app.use(bodyParser.json({
     limit: '50mb'

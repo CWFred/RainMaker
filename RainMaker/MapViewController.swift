@@ -64,10 +64,10 @@ var locationUser: CLLocation!
             manager.desiredAccuracy = kCLLocationAccuracyBest
             manager.requestWhenInUseAuthorization()
             manager.startUpdatingLocation()
-            //var latlong : [String]
-            //latlong = locationinString.components(separatedBy: ",")
+            var latlong : [String]
+            latlong = locationinString.components(separatedBy: ",")
             
-            //locationDevice = CLLocation(latitude: Double(latlong[0])!, longitude: Double(latlong[1])!)
+            locationDevice = CLLocation(latitude: Double(latlong[0])!, longitude: Double(latlong[1])!)
             
         }
         

@@ -54,7 +54,7 @@ class CalendarViewController: UIViewController{
                 "longitude":longitude,
                 ]
             
-            let url = "http://ec2-54-174-126-95.compute-1.amazonaws.com:9000/schedule"
+            let url = "http://ec2-54-84-46-40.compute-1.amazonaws.com:9000/schedule"
             
             Alamofire.request(url, method: .post,parameters: parameter).responseJSON { response in
                 switch response.result {
