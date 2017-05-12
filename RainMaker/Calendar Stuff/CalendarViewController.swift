@@ -31,6 +31,7 @@ class CalendarViewController: UIViewController{
             let month = Calendar.current.component(.month, from: self.datePicker.date)
             let day = Calendar.current.component(.day, from: self.datePicker.date)
             
+            if(locationinString != nil){
             var latlong : [String]
             latlong = locationinString.components(separatedBy: ",")
             
@@ -42,7 +43,7 @@ class CalendarViewController: UIViewController{
             
             let parameter: Parameters = [
                 "devId":deviceID,
-                "argument":"duration:"+textField.text!,
+                "argument":textField.text!,
                 "access_token":accessToken,
                 "functionName":"open",
                 "year":year,
@@ -74,7 +75,42 @@ class CalendarViewController: UIViewController{
                 
             }
             
+            }
             
+            else{
+                let parameter: Parameters = [
+                    "devId":deviceID,
+                    "argument":"duration:"+textField.text!,
+                    "access_token":accessToken,
+                    "functionName":"open",
+                    "year":year,
+                    "month":month,
+                    "day":day,
+                    "hour":hour,
+                    "minute":minute,
+                    ]
+                
+                let url = "http://ec2-54-84-46-40.compute-1.amazonaws.com:9000/schedule"
+                
+                Alamofire.request(url, method: .post,parameters: parameter).responseJSON { response in
+                    switch response.result {
+                        
+                    case .success( _):
+                        print("sent")
+                        
+                        
+                        
+                        
+                        
+                        
+                    case .failure(let error):
+                        print(error)
+                    }
+                    
+                    
+                }
+
+            }
             
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -206,10 +242,11 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
         
         
 //        let df = DateFormatter()
-//        df.dateFormat = "yyyy-MM-dd"
+//        df.dateFormat = "yyyy-MM-dd HH:MM"
 //        let date = df.date(from: dateString[r])
 //        if let unwrappedDate = date {
 //            datePicker.setDate(unwrappedDate, animated: false)
+//    
 //        }
         
         handleCellSelection(view: cell, cellState: cellState)

@@ -18,16 +18,17 @@ var locationUser: CLLocation!
     
     class MapViewController: UIViewController, CLLocationManagerDelegate {
           @IBOutlet weak var mapView: MKMapView!
-        
         let manager = CLLocationManager()
         let span:MKCoordinateSpan = MKCoordinateSpanMake(0.02, 0.02)
         
+        @IBOutlet weak var viewDevButton: UIButton!
         @IBAction func displayUser(_ sender: Any) {
             
             let myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(locationUser.coordinate.latitude, locationUser.coordinate.longitude)
             let region:MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
             
             mapView.setRegion(region, animated: true)
+            
             self.mapView.showsUserLocation = true
             
         }
@@ -64,10 +65,20 @@ var locationUser: CLLocation!
             manager.desiredAccuracy = kCLLocationAccuracyBest
             manager.requestWhenInUseAuthorization()
             manager.startUpdatingLocation()
+            mapView.mapType = .hybrid
+            
+            if ((locationinString) != nil){
             var latlong : [String]
             latlong = locationinString.components(separatedBy: ",")
             
             locationDevice = CLLocation(latitude: Double(latlong[0])!, longitude: Double(latlong[1])!)
+            }
+            else{
+                viewDevButton.isEnabled = false
+                viewDevButton.isHidden = true
+                
+            }
+            
             
         }
         

@@ -12,7 +12,6 @@ Before trying to use this server , install the following:
     npm install request
     npm install body-parser
     npm install express
-    npm install cors
     npm install particle-api-js
     npm insrall fs
 4)  hey, have fun okay buddy ?
@@ -101,7 +100,7 @@ app.post('/functions', (req, res) => {
 
     
     
-  var fnPr = particle.callFunction({ deviceId: devId, name: funcName, argument: 'D0:HIGH', auth: token });
+  var fnPr = particle.callFunction({ deviceId: devId, name: funcName, argument: '', auth: token });
 
 fnPr.then(
   function(data) {
@@ -187,12 +186,10 @@ request({
     method: "GET",
     json: true
 }, function (error, response, body){
-    offset = -1 * response.body.offset; //not exactly working. 
-   
-});
-     
-     var dateobject = new Date(year, month-1, day, hour, minute, 0, 0 );
-     dateobject.setHours(dateobject.getHours()+offset);
+    global.houroffset = -1 * response.body.offset;
+
+    var dateobject = new Date(year, month-1, day, hour, minute, 0, 0 );
+     dateobject.setHours(dateobject.getHours()+global.houroffset);
      let stringobj = dateobject.toString();
      console.log(stringobj);
     
@@ -219,7 +216,7 @@ request({
     method: "GET",
     json: true
 }, function (error, response, body){
-    show_results(response);
+    show_results(response,funcName,token,devId,args);
 });
         
         
@@ -227,27 +224,44 @@ request({
 }, null, true, "UTC");
         
 });
-
-function show_results(response) {
+});
+     
     
-    global.precipitationProbability = response.body.currently.precipProbability;
+
+function show_results(response,funcname,authentication,deviceID,argument) {
+    
+    console.log(response.body.currently);
+    
+    global.precipitationProbability = response.body.currently.precipProbability*100;
+    
+    //for presentation
+    //global.precipitationProbability = 100;
+    
+    
     global.temperatureAtLocation = response.body.currently.temperature;
     global.humidityAtLocation = response.body.currently.humidity;
     global.houroffset = -1 * response.body.offset; 
     
-    console.log(global.precipitationProbability);
-    console.log(global.temperatureAtLocation);
-    console.log(global.humidityAtLocation);
-          
-  var fnPr = particle.callFunction({ deviceId:'58002b000b51343334363138', name:'open', argument:'', auth: '094b8561d7d11b61931e4be4ddce44781b49c9ad' });
+    
+    console.log("Precipitation Probability in the next hour:"+global.precipitationProbability);
+    console.log("Temperature in Fahrenheit at gps coordinates:"+global.temperatureAtLocation);
+    console.log("Air humidity at gps coordinates:"+global.humidityAtLocation);
+    console.log("Timezone offset at gps coordinates:"+global.houroffset);
+    
+    if(global.precipitationProbability > 0.8 || global.temperatureAtLocation < 33 || global.humidityAtLocation > 80){console.log("Not Opening Valve");}
+    else{
+        console.log("Opening Valve");
+       var fnPr = particle.callFunction({ deviceId:deviceID, name:funcname, argument:argument, auth:authentication });
 
 fnPr.then(
   function(data) {
     console.log('Function called succesfully:', data);
-      res.send(JSON.stringify({'data' : data}));
   }, function(err) {
     console.log('An error occurred:', err);
-  });
+  }); 
+        
+    }
+  
     
 }
 
