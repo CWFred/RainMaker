@@ -97,9 +97,7 @@ app.post('/functions', (req, res) => {
     let devId = req.body.devId;
     let token = req.body.access_token; 
     let funcName = req.body.func_name;
-
-    
-    
+ 
   var fnPr = particle.callFunction({ deviceId: devId, name: funcName, argument: '', auth: token });
 
 fnPr.then(
@@ -111,6 +109,7 @@ fnPr.then(
   });
      
 });
+
 
 app.post('/attributes', (req, res) => {
     
@@ -253,14 +252,14 @@ function show_results(response,funcname,authentication,deviceID,argument) {
         console.log("Opening Valve");
        var fnPr = particle.callFunction({ deviceId:deviceID, name:funcname, argument:argument, auth:authentication });
 
-fnPr.then(
-  function(data) {
+      fnPr.then(
+      function(data) {
     console.log('Function called succesfully:', data);
-  }, function(err) {
-    console.log('An error occurred:', err);
-  }); 
+     }, function(err) {
+     console.log('An error occurred:', err);
+    }); 
         
-    }
+      }
   
     
 }
