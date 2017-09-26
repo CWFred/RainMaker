@@ -1,0 +1,223 @@
+ // This #include statement was automatically added by the Particle IDE.
+#include "AssetTracker/AssetTracker.h"
+
+// This #include statement was automatically added by the Particle IDE.
+#include "SparkJson/SparkJson.h"
+
+
+
+int transmittingData = 1;
+
+String coords;
+String batLvl = "";
+String batVoltage = "";
+String temp = "";
+double humidity = 0.0;
+String flow = "";
+double flowV = 0.0;
+String test = "1738";
+
+
+
+
+int valveOpenPort = D7;
+int valveClosePort = D1;
+
+int flowPort = A0;
+int positionPin= A1;
+int soilHumidityPort = A2;
+
+
+
+
+int raw= 0;
+int Vin= 3.3;
+float Vout= 0;
+float R1= 8200;
+float R2= 0;
+float buffer= 0;
+double position = 0;
+
+AssetTracker t = AssetTracker();
+
+
+FuelGauge fuel;
+
+
+void setup() {
+  
+    t.begin();
+
+    t.gpsOn();
+
+    Serial.begin(9600);
+    
+    pinMode(valveOpenPort,OUTPUT);
+    pinMode(valveClosePort,OUTPUT);
+    
+    pinMode(positionPin,INPUT);
+    pinMode(soilHumidityPort,INPUT);
+    pinMode(flowPort,INPUT);
+    
+    
+   digitalWrite(valveOpenPort,LOW);
+   digitalWrite(valveClosePort,LOW);
+   
+   
+    
+    // These three functions are useful for remote diagnostics.
+    Particle.function("open",openValve);
+    Particle.function("quickopen",quickOpen);
+    Particle.function("close",closeValve);
+    Particle.function("batt", batteryStatus);
+    Particle.function("gps", gpsPublish);
+    Particle.variable("coords",coords);
+    Particle.variable("batteryP",batLvl);
+    Particle.variable("batteryV",batVoltage);
+    Particle.variable("test",test);
+    Particle.variable("humidity",humidity);
+    Particle.variable("flow",flow);
+    Particle.variable("position",position);
+}
+
+
+void loop() {
+    
+     t.updateGPS();
+     coords = "41.7986,-72.7138";
+    if(t.gpsFix()){ 
+        
+        coords = t.readLatLon();
+       
+        }
+     
+      
+      humidity = -99*(3.3/4095)*analogRead(soilHumidityPort) + 317;
+      if(humidity > 100){
+    humidity = 100;
+}
+if(humidity < 0){
+    humidity = 0;
+}
+     
+     flowV = (3.3/4095)*analogRead(flowPort);
+     
+     
+     if(flowV>0.6){
+         flow = "Flowing";
+     }
+     else{
+         flow = "Not Flowwing";
+     }
+     
+ raw= analogRead(positionPin);
+if(raw) 
+{
+buffer= raw * Vin;
+Vout= (buffer)/4095;
+buffer= (Vin/Vout) -1;
+R2 = R1 * buffer;
+//Serial.print("Vout: ");
+// Serial.println(Vout);
+// Serial.print("R2: ");
+// Serial.println(R2);
+
+position= -112.35*Vout + 201.11;
+
+ 
+if(position > 100){
+    position = 100;
+}
+if(position < 0){
+    position = 0;
+}
+}
+
+    batVoltage = String::format("%.2f",fuel.getVCell());
+    batLvl=  String::format("%.2f",fuel.getSoC());
+
+//Serial.print("flow voltage");
+//Serial.println(flowV);
+//Serial.print("Flow");
+Serial.println(flow);
+
+}
+
+
+ 
+
+
+
+int openValve(String command){
+int duration = command.toInt();
+
+  Serial.print(duration);
+  test = duration ;
+  
+  digitalWrite(valveOpenPort,HIGH);
+  digitalWrite(valveClosePort,LOW);
+  delay(5*1000);
+  
+  digitalWrite(valveOpenPort, LOW);
+  digitalWrite(valveClosePort, LOW);
+  
+  delay(duration*60*1000);
+  
+  digitalWrite(valveOpenPort, LOW);
+  digitalWrite(valveClosePort, HIGH);
+  
+  delay(6*1000);
+  
+  digitalWrite(valveOpenPort, LOW);
+  digitalWrite(valveClosePort, LOW);
+  
+  
+}
+
+int quickOpen(String command){
+    
+  digitalWrite(valveOpenPort,HIGH);
+  digitalWrite(valveClosePort,LOW);
+  delay(5*1000);
+  digitalWrite(valveOpenPort,LOW);
+  digitalWrite(valveClosePort,LOW);
+  delay(5*1000);
+  digitalWrite(valveOpenPort,LOW);
+  digitalWrite(valveClosePort,HIGH);
+  delay(6*1000);
+  digitalWrite(valveOpenPort,LOW);
+  digitalWrite(valveClosePort,LOW);
+  
+    
+    
+    
+}
+
+int closeValve(String command){
+    digitalWrite(valveOpenPort, LOW);
+    digitalWrite(valveClosePort, HIGH);
+    delay(10000);
+    
+    digitalWrite(valveOpenPort, LOW);
+    digitalWrite(valveClosePort, LOW);
+}
+
+int gpsPublish(String command){
+    t.updateGPS();
+    if(t.gpsFix()){ 
+        
+        coords = t.readLatLon();
+        Particle.publish("G", t.readLatLon(), 60, PRIVATE);
+
+    }
+    else { return 0; }
+}
+
+int batteryStatus(String command){
+    
+          batVoltage = String::format("%.2f",fuel.getVCell());
+          batLvl=  String::format("%.2f",fuel.getSoC());
+ 
+}
+
+
