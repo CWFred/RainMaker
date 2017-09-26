@@ -9,11 +9,12 @@ The backend of the application is in Node.Js and serves as an intermediary betwe
 
 The code for the Particle Board can be found in the ParticleC.txt file. 
 
-In order to run this project. 
+In order to run this project: 
 1) Create a server where the Particle.js server is being run. 
 2) Flash Electron Board using ParticleC.txt code using their online editor at : build.particle.io
-3) Change the code in application to point to newly created server. 
-
+3) Change the code in application to point to newly created server.
+4) Install all Cocoapods(JTCalendar , SwiftyJson, Alamofire, ToastSwift, Spark)
+5) Run Application. 
 
 Quick Video Presentation : https://www.youtube.com/watch?v=aktC0xdgK00
 
